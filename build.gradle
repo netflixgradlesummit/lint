@@ -1,0 +1,17 @@
+buildscript { repositories { jcenter() } }
+
+plugins {
+  id 'java'
+  id 'nebula.lint' version '0.30.12'
+}
+
+gradleLint.rules = ['unused-dependency']
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+  compile 'com.google.guava:guava:latest.release'
+  compile 'commons-lang:commons-lang:2.+'
+}
