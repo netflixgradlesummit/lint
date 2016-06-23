@@ -10,7 +10,8 @@ class Java8VersionRule extends GradleLintRule {
 
     @Override
     void visitBinaryExpression(BinaryExpression expression) {
-        if(expression.leftExpression instanceof VariableExpression && expression.rightExpression instanceof ConstantExpression) {
+        if(expression.leftExpression instanceof VariableExpression &&
+                expression.rightExpression instanceof ConstantExpression) {
             def variable = expression.leftExpression.text
             if(variable == 'sourceCompatibility' || variable == 'targetCompatibility') {
                 if(expression.rightExpression.text != '1.8') {

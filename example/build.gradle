@@ -4,15 +4,18 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath('com.netflix.lint.example:rules:latest.release') { changing = true }
+        classpath 'com.netflix.lint.example:rules:latest.release'
+        classpath 'com.netflix.nebula:nebula-lock-experimental:latest.release'
     }
-    configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'minutes'
+    configurations.classpath.resolutionStrategy.cacheDynamicVersionsFor 0, 'minutes'
 }
 
 plugins {
     id 'java'
-    id 'nebula.lint' version '0.31.0'
+    id 'nebula.lint' version '0.30.12'
 }
+
+apply plugin: 'nebula.lock-experimental'
 
 gradleLint.rules = ['unused-dependency', 'java-version']
 
