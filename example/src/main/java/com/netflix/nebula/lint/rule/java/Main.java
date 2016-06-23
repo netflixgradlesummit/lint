@@ -7,7 +7,7 @@ public class Main {
 		System.out.println(new Main().sayHello("Gradle", "Netflix"));
 	}
 
-	public String sayHello(String... to) {
+	String sayHello(String... to) {
 		Joiner joiner = Joiner.on(" and ");
 		return "Hello " + joiner.join(to) + "!";
 	}
