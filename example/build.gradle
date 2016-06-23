@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath('com.netflix.lint.example:rules:latest.release') { changing = true }
+    }
+    configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'minutes'
+}
+
+plugins {
+    id 'java'
+    id 'nebula.lint' version '0.31.0'
+}
+
+gradleLint.rules = ['unused-dependency', 'java-version']
+
+sourceCompatibility = '1.7'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:latest.release'
+    compile 'commons-lang:commons-lang:2.+'
+    compile 'junit:junit:4.+'
+}
+
+task forceResolve << {
+    configurations.compile.resolve()
+}
+
+tasks.forceResolve.finalizedBy compileJava

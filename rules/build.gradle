@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile gradleApi()
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'com.netflix.nebula:gradle-lint-plugin:latest.release'
+
+    testCompile 'com.netflix.nebula:nebula-test:latest.release'
+    testCompile ('org.spockframework:spock-core:latest.release') {
+        exclude module: 'groovy-all'
+    }
+}
+
+group = 'com.netflix.lint.example'
+version = '1.0'
+
+configurations.compile.resolutionStrategy.cacheDynamicVersionsFor 0, 'minutes'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
