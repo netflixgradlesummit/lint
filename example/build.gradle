@@ -31,6 +31,14 @@ dependencies {
     compile 'junit:junit:4.+'
 }
 
+
+
+
+
+
+
+
+
 task forceResolve << {
     configurations.compile.resolve()
 }
